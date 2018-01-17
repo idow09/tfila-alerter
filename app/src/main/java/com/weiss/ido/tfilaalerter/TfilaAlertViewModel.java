@@ -1,7 +1,5 @@
 package com.weiss.ido.tfilaalerter;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import java.time.LocalTime;
@@ -14,13 +12,10 @@ class TfilaAlertViewModel extends ViewModel {
     private LocalTime time;
 
     public TfilaAlertViewModel() {
-
     }
 
-    public LiveData<Long> minutesLeft() {
-        MutableLiveData<Long> data = new MutableLiveData<>();
-        data.setValue(time.until(PRAY_TIME, MINUTES));
-        return data;
+    public long minutesLeft() {
+        return time.until(PRAY_TIME, MINUTES);
     }
 
     public void init(LocalTime time) {

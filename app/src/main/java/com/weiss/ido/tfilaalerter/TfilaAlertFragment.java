@@ -13,8 +13,6 @@ import java.time.LocalTime;
 
 public class TfilaAlertFragment extends Fragment {
 
-    private TextView minutesLeftTextView;
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -24,10 +22,10 @@ public class TfilaAlertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tfila_alert_layout, container, false);
-        minutesLeftTextView = view.findViewById(R.id.text_view_minutes_left);
+        TextView minutesLeftTextView = view.findViewById(R.id.text_view_minutes_left);
         TfilaAlertViewModel viewModel = ViewModelProviders.of(this).get(TfilaAlertViewModel.class);
         viewModel.init(LocalTime.now());
-        viewModel.minutesLeft().observe(this, minutesLeft -> minutesLeftTextView.setText(format(minutesLeft)));
+        minutesLeftTextView.setText(format(viewModel.minutesLeft()));
         return view;
     }
 
