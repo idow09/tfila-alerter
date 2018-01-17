@@ -18,47 +18,29 @@ public class TfilaAlertViewModelTest {
     @Test
     public void calculatesMinutesLeftUntilTfila() throws Exception {
         TfilaAlertViewModel viewModel = new TfilaAlertViewModel();
-        viewModel.init(LocalTime.of(9, 7), mockTfilaTimeProvider());
+        viewModel.init(LocalTime.of(9, 7), new MockTfilaTimeProvider());
         assertEquals(83, viewModel.minutesLeft());
     }
 
     @Test
     public void calculatesTimesToTheSoonerBetweenShakharitAndMinha() throws Exception {
         TfilaAlertViewModel viewModel = new TfilaAlertViewModel();
-        viewModel.init(LocalTime.of(10, 59), mockTfilaTimeProvider());
+        viewModel.init(LocalTime.of(10, 59), new MockTfilaTimeProvider());
         assertEquals(121, viewModel.minutesLeft());
     }
 
     @Test
     public void calculatesTimesToTheSoonerBetweenMinhaAndMaariv() throws Exception {
         TfilaAlertViewModel viewModel = new TfilaAlertViewModel();
-        viewModel.init(LocalTime.of(14, 27), mockTfilaTimeProvider());
+        viewModel.init(LocalTime.of(14, 27), new MockTfilaTimeProvider());
         assertEquals(14 * 60 + 33, viewModel.minutesLeft());
     }
 
     @Test
     public void correctsNegativeResults() throws Exception {
         TfilaAlertViewModel viewModel = new TfilaAlertViewModel();
-        viewModel.init(LocalTime.of(23, 42), mockTfilaTimeProvider());
+        viewModel.init(LocalTime.of(23, 42), new MockTfilaTimeProvider());
         assertEquals(318, viewModel.minutesLeft());
     }
 
-    private TfilaTimeProvider mockTfilaTimeProvider() {
-        return new TfilaTimeProvider() {
-            @Override
-            public LocalTime getEndOfShakharit() {
-                return LocalTime.of(10, 30);
-            }
-
-            @Override
-            public LocalTime getEndOfMinha() {
-                return LocalTime.of(13, 0);
-            }
-
-            @Override
-            public LocalTime getEndOfMaariv() {
-                return LocalTime.of(5, 0);
-            }
-        };
-    }
 }
