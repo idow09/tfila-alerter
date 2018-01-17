@@ -24,7 +24,23 @@ public class TfilaAlertFragment extends Fragment {
         View view = inflater.inflate(R.layout.tfila_alert_layout, container, false);
         TextView minutesLeftTextView = view.findViewById(R.id.text_view_minutes_left);
         TfilaAlertViewModel viewModel = ViewModelProviders.of(this).get(TfilaAlertViewModel.class);
-        viewModel.init(LocalTime.now(), LocalTime.of(10, 30));
+        TfilaTimeProvider tfilaTimeProvider = new TfilaTimeProvider() {
+            @Override
+            public LocalTime getEndOfShakharit() {
+                return LocalTime.of(10, 30);
+            }
+
+            @Override
+            public LocalTime getEndOfMinha() {
+                return LocalTime.of(13, 0);
+            }
+
+            @Override
+            public LocalTime getEndOfMaariv() {
+                return LocalTime.of(5, 0);
+            }
+        };
+        viewModel.init(LocalTime.now(), tfilaTimeProvider);
         long minutesLeft = viewModel.minutesLeft();
         LocalTime timeLeft = LocalTime.of((int) minutesLeft / 60, (int) minutesLeft % 60);
         minutesLeftTextView.setText(timeLeft.toString());
