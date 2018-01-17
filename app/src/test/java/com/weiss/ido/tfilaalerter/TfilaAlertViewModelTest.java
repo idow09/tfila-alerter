@@ -2,6 +2,7 @@ package com.weiss.ido.tfilaalerter;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
@@ -12,15 +13,20 @@ import static org.junit.Assert.assertEquals;
 
 public class TfilaAlertViewModelTest {
 
-    public static final LocalTime CURRENT_TIME = LocalTime.of(9, 0);
-
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
 
     @Test
-    public void publishesCorrectMinutesOnSomeFixedTime() throws Exception {
+    public void calculatesMinutesLeftUntilPrayer() throws Exception {
         TfilaAlertViewModel viewModel = new TfilaAlertViewModel();
-        viewModel.init(CURRENT_TIME);
-        assertEquals(90, viewModel.minutesLeft());
+        viewModel.init(LocalTime.of(9, 7), LocalTime.of(10, 30));
+        assertEquals(83, viewModel.minutesLeft());
+    }
+
+    @Test
+    public void laterOnTheDayCalculatesRemainingTimeForTheDayAfter() throws Exception {
+        TfilaAlertViewModel viewModel = new TfilaAlertViewModel();
+        viewModel.init(LocalTime.of(23, 42), LocalTime.of(10, 30));
+        assertEquals(648, viewModel.minutesLeft());
     }
 }

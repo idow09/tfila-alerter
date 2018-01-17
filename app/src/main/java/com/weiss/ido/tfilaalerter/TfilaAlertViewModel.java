@@ -8,17 +8,20 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 
 class TfilaAlertViewModel extends ViewModel {
 
-    public static final LocalTime PRAY_TIME = LocalTime.of(10, 30);
-    private LocalTime time;
+    private static final long MINUTES_IN_DAY = 60 * 24;
+    private LocalTime currentTime;
+    private LocalTime tfilaTime;
 
     public TfilaAlertViewModel() {
     }
 
     public long minutesLeft() {
-        return time.until(PRAY_TIME, MINUTES);
+        long minutesBetween = currentTime.until(tfilaTime, MINUTES);
+        return minutesBetween < 0 ? (minutesBetween + MINUTES_IN_DAY) : minutesBetween;
     }
 
-    public void init(LocalTime time) {
-        this.time = time;
+    public void init(LocalTime currentTime, LocalTime tfilaTime) {
+        this.currentTime = currentTime;
+        this.tfilaTime = tfilaTime;
     }
 }
