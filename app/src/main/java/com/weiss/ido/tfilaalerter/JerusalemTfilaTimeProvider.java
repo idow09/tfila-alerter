@@ -2,7 +2,8 @@ package com.weiss.ido.tfilaalerter;
 
 import java.time.LocalTime;
 
-class RealTfilaTimeProvider implements TfilaTimeProvider {
+class JerusalemTfilaTimeProvider implements TfilaTimeProvider {
+
     @Override
     public LocalTime getEndOfShakharit() {
         return LocalTime.of(10, 30);

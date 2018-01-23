@@ -24,7 +24,7 @@ public class TfilaAlertFragment extends Fragment {
         View view = inflater.inflate(R.layout.tfila_alert_layout, container, false);
         TextView minutesLeftTextView = view.findViewById(R.id.text_view_minutes_left);
         TfilaAlertViewModel viewModel = ViewModelProviders.of(this).get(TfilaAlertViewModel.class);
-        TfilaTimeProvider tfilaTimeProvider = new RealTfilaTimeProvider();
+        TfilaTimeProvider tfilaTimeProvider = new JerusalemTfilaTimeProvider();
         viewModel.init(LocalTime.now(), tfilaTimeProvider);
         long minutesLeft = viewModel.minutesLeft();
         LocalTime timeLeft = LocalTime.of((int) minutesLeft / 60, (int) minutesLeft % 60);

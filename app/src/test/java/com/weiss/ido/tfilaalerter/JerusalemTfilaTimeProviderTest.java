@@ -7,13 +7,13 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 
-public class RealTfilaTimeProviderTest {
+public class JerusalemTfilaTimeProviderTest {
 
-    private RealTfilaTimeProvider provider;
+    private JerusalemTfilaTimeProvider provider;
 
     @Before
     public void setUp() throws Exception {
-        provider = new RealTfilaTimeProvider();
+        provider = new JerusalemTfilaTimeProvider();
     }
 
     @Test

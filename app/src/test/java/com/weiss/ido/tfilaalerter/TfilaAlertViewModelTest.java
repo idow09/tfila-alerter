@@ -16,12 +16,12 @@ public class TfilaAlertViewModelTest {
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
 
-    private RealTfilaTimeProvider provider;
+    private MockTfilaTimeProvider provider;
     private TfilaAlertViewModel viewModel;
 
     @Before
     public void setUp() throws Exception {
-        provider = new RealTfilaTimeProvider();
+        provider = new MockTfilaTimeProvider();
         viewModel = new TfilaAlertViewModel();
     }
 
