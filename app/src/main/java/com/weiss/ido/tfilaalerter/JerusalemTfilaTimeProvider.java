@@ -29,8 +29,7 @@ class JerusalemTfilaTimeProvider implements TfilaTimeProvider {
 
     @Override
     public LocalTime getEndOfMinha() {
-//        return LocalTime.of(13, 0);
-        return null;
+        return toLocalTime(calendar.getSunset());
     }
 
     @Override

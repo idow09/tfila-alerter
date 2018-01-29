@@ -33,11 +33,10 @@ public class JerusalemTfilaTimeProviderTest {
         assertEquals(LocalTime.of(9, 34), provider.getEndOfShakharit());
     }
 
-    @Ignore
     @Test
     public void getEndOfMinha() throws Exception {
         JerusalemTfilaTimeProvider provider = new JerusalemTfilaTimeProvider(someFixedDate);
-        assertEquals(LocalTime.of(13, 0), provider.getEndOfMinha());
+        assertEquals(LocalTime.of(16, 40), provider.getEndOfMinha());
     }
 
     @Ignore
