@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TfilaAlertFragment extends Fragment {
@@ -24,7 +25,7 @@ public class TfilaAlertFragment extends Fragment {
         View view = inflater.inflate(R.layout.tfila_alert_layout, container, false);
         TextView minutesLeftTextView = view.findViewById(R.id.text_view_minutes_left);
         TfilaAlertViewModel viewModel = ViewModelProviders.of(this).get(TfilaAlertViewModel.class);
-        TfilaTimeProvider tfilaTimeProvider = new JerusalemTfilaTimeProvider();
+        TfilaTimeProvider tfilaTimeProvider = new JerusalemTfilaTimeProvider(LocalDate.now());
         viewModel.init(LocalTime.now(), tfilaTimeProvider);
         long minutesLeft = viewModel.minutesLeft();
         LocalTime timeLeft = LocalTime.of((int) minutesLeft / 60, (int) minutesLeft % 60);
