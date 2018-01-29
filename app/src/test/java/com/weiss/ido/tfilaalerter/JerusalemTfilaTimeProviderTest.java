@@ -11,37 +11,34 @@ import static org.junit.Assert.assertEquals;
 
 public class JerusalemTfilaTimeProviderTest {
 
-    private LocalDate someFixedDate;
-    private LocalDate someOtherFixedDate;
+    private JerusalemTfilaTimeProvider provider;
+    private LocalTime END_OF_SHAKHARIT;
+    private LocalTime END_OF_MINHA;
+    private LocalTime END_OF_MAARIV;
 
     @Before
     public void setUp() throws Exception {
-        someFixedDate = LocalDate.of(2017, Month.DECEMBER, 11);
-        someOtherFixedDate = LocalDate.of(2018, Month.FEBRUARY, 26);
+        END_OF_SHAKHARIT = LocalTime.of(9, 26);
+        END_OF_MINHA = LocalTime.of(16, 40);
+        END_OF_MAARIV = LocalTime.of(23, 32);
+
+        LocalDate date = LocalDate.of(2017, Month.DECEMBER, 11);
+        provider = new JerusalemTfilaTimeProvider(date);
     }
 
     @Test
-    public void getEndOfShakharitSomeDay() throws Exception {
-        JerusalemTfilaTimeProvider provider = new JerusalemTfilaTimeProvider(someFixedDate);
-        assertEquals(LocalTime.of(9, 26), provider.getEndOfShakharit());
-    }
-
-    @Test
-    public void getEndOfShakharitSomeOtherDay() throws Exception {
-        JerusalemTfilaTimeProvider provider = new JerusalemTfilaTimeProvider(someOtherFixedDate);
-        assertEquals(LocalTime.of(9, 34), provider.getEndOfShakharit());
+    public void getEndOfShakharit() throws Exception {
+        assertEquals(END_OF_SHAKHARIT, provider.getEndOfShakharit());
     }
 
     @Test
     public void getEndOfMinha() throws Exception {
-        JerusalemTfilaTimeProvider provider = new JerusalemTfilaTimeProvider(someFixedDate);
-        assertEquals(LocalTime.of(16, 40), provider.getEndOfMinha());
+        assertEquals(END_OF_MINHA, provider.getEndOfMinha());
     }
 
     @Test
     public void getEndOfMaariv() throws Exception {
-        JerusalemTfilaTimeProvider provider = new JerusalemTfilaTimeProvider(someFixedDate);
-        assertEquals(LocalTime.of(23, 32), provider.getEndOfMaariv());
+        assertEquals(END_OF_MAARIV, provider.getEndOfMaariv());
     }
 
 }
