@@ -34,8 +34,7 @@ class JerusalemTfilaTimeProvider implements TfilaTimeProvider {
 
     @Override
     public LocalTime getEndOfMaariv() {
-//        return LocalTime.of(5, 0);
-        return null;
+        return toLocalTime(calendar.getSolarMidnight());
     }
 
     @NonNull

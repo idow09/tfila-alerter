@@ -1,7 +1,6 @@
 package com.weiss.ido.tfilaalerter;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -39,11 +38,10 @@ public class JerusalemTfilaTimeProviderTest {
         assertEquals(LocalTime.of(16, 40), provider.getEndOfMinha());
     }
 
-    @Ignore
     @Test
     public void getEndOfMaariv() throws Exception {
         JerusalemTfilaTimeProvider provider = new JerusalemTfilaTimeProvider(someFixedDate);
-        assertEquals(LocalTime.of(5, 0), provider.getEndOfMaariv());
+        assertEquals(LocalTime.of(23, 32), provider.getEndOfMaariv());
     }
 
 }
